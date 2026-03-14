@@ -6,8 +6,6 @@ extern void UI_Shutdown();
 extern void UI_UpdateMenu(float flTime);
 extern void UI_KeyEvent(int key, int down);
 
-// UI_MouseMove() is called despite key dest(not keyDest in globalUIContext) is KEY_CONSOLE or KEY_GAME, so there is a "time-freezing" trick
-extern void UI_MouseMove(int x, int y);
 extern void UI_SetActiveMenu(int active);
 extern void UI_AddServerToList(netadr_s adr, const char *info);
 extern void UI_GetCursorPos(int *pos_x, int *pos_y);

@@ -18,7 +18,7 @@ static UI_FUNCTIONS exportedUIFunctions = {
   &UI_Shutdown,        // UI_Shutdown
   &UI_UpdateMenu,      // UI_UpdateMenu
   &UI_KeyEvent,        // UI_KeyEvent
-  &UI_MouseMove,       // UI_MouseMove
+  &_mouseMove,         // UI_MouseMove
   &UI_SetActiveMenu,   // UI_SetActiveMenu
   &UI_AddServerToList, // UI_AddServerToList
   &UI_GetCursorPos,    // UI_GetCursorPos
