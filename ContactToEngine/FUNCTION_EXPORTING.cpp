@@ -42,10 +42,6 @@ void UI_KeyEvent(int key, int down) {
   // if (globalUIContext.keyDest == KEY_MENU);
 }
 
-void UI_MouseMove(int x, int y) {
-  mouseMove(x, y);
-};
-
 void UI_SetActiveMenu(int active) {
   if (!globalUIContext.initialized)
     return;
