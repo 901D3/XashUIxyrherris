@@ -93,7 +93,7 @@ void updateUIDisplayDimensionAndShifts() {
   globalUIContext.shiftY = (windowHeight - globalUIContext.displayHeight) / 2;
 }
 
-void mouseMove(int x, int y) {
+GAME_EXPORT void _mouseMove(int x, int y) {
   if (globalTricks.mouseMoveGeneration >= globalTricks.lastProcessedMouseMoveGen) {
     mouseEventsReset();
     elementMouseEventsReset();
