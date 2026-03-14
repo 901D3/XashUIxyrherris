@@ -28,7 +28,7 @@ extern void updateElementsScaleAndShifts();
 
 extern void setKeyDestWrapper(KeyDestEnums keyDest);
 
-extern void mouseMove(int x, int y);
+GAME_EXPORT extern void _mouseMove(int x, int y);
 extern void updateUI();
 GAME_EXPORT extern int _baseVideoInit();
 GAME_EXPORT extern void _baseInit();
