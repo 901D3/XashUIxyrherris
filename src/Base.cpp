@@ -148,14 +148,14 @@ inline void uiContextMenusInit() {
   globalUIContext.ptrToMenusRenderFunction[MENU_MAIN] = &menuMainRenderWrapper;
   globalUIContext.ptrToMenusRenderFunction[MENU_SETTINGS] = &menuSettingsRenderWrapper;
   globalUIContext.ptrToMenusRenderFunction[MENU_SETTINGS_CONTROLS] = &menuSettingsControlsRenderWrapper;
-  globalUIContext.ptrToMenusRenderFunction[MENU_SETTINGS_ADV_CONTROLS] = &menuSettingsControlsAdvControlsRenderWrapper;
+  globalUIContext.ptrToMenusRenderFunction[MENU_SETTINGS_ADV_CONTROLS] = &menuSettingsAdvControlsRenderWrapper;
   globalUIContext.ptrToMenusRenderFunction[MENU_SETTINGS_AUDIO] = &menuSettingsAudioRenderWrapper;
 
   globalUIContext.ptrToMenuContainers[MENU_NULL] = nullptr;
   globalUIContext.ptrToMenuContainers[MENU_MAIN] = &menuMain;
   globalUIContext.ptrToMenuContainers[MENU_SETTINGS] = &menuSettings;
   globalUIContext.ptrToMenuContainers[MENU_SETTINGS_CONTROLS] = &menuSettingsControls;
-  globalUIContext.ptrToMenuContainers[MENU_SETTINGS_ADV_CONTROLS] = &menuSettingsControlsAdvControls;
+  globalUIContext.ptrToMenuContainers[MENU_SETTINGS_ADV_CONTROLS] = &menuSettingsAdvControls;
   globalUIContext.ptrToMenuContainers[MENU_SETTINGS_AUDIO] = &menuSettingsAudio;
 
   globalUIContext.menusHistoryCount = 0;
