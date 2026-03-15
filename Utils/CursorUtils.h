@@ -7,8 +7,10 @@ namespace CursorUtils {
     int x, int y,
     int width, int height,
     int mouseX, int mouseY) {
-    return (mouseX >= x && mouseX < x + width &&
-            mouseY >= y && mouseY < y + height);
+
+    return (
+      mouseX >= x && mouseX < x + width
+      && mouseY >= y && mouseY < y + height);
   }
 
   inline bool isMouseDown() { // mouseDown = 1, lastMouseDown = 0 | when LMB is down and previously isn't
