@@ -19,6 +19,10 @@ UIMenu menuSettingsAudio;
 static void useDefault() {
 }
 
+static void noDSP() {
+  (static_cast<UIElementToggleButton *>(menuSettingsAudio.UIMenu::getElement("noDSPToggleButton")))->UIElementToggleButton::toggleHelper();
+}
+
 void menuSettingsAudioRenderWrapper() {
   menuSettingsAudio.UIMenu::renderMenu();
 }
@@ -76,7 +80,7 @@ void menuSettingsAudioInit() {
   suitVolume.UIElementSlider::setHeight(16);
 
   static UIElementToggleButton noDSPToggleButton;
-  noDSPToggleButton.UIElement::identifier = "noDSPToggleTextButton";
+  noDSPToggleButton.UIElement::identifier = "noDSPToggleButton";
 
   doneButton.UIElementText::text = "Done";
   doneButton.UIElement::setPosition(positions[0].x, positions[0].y);
@@ -108,6 +112,7 @@ void menuSettingsAudioInit() {
   menuSettingsAudio.UIMenu::pushBackElement(&suitVolume);
 
   noDSPToggleButton.UIElementExtensionCvar::bindCvar("room_off");
+  noDSPToggleButton.UIElement::onMouseUp = &noDSP;
   noDSPToggleButton.UIElement::setPosition(positions[10].x, positions[10].y);
   menuSettingsAudio.UIMenu::pushBackElement(&noDSPToggleButton);
 }
