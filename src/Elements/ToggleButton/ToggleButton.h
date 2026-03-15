@@ -17,9 +17,8 @@ public:
 
   bool toggle;
 
-  FunctionWithClassInstance onMouseUpBuiltIn;
-
-  void mouseUp();
+  // must be called when defining onMouseUp for this element, otherwise use a custom logic
+  virtual void toggleHelper();
 
   virtual void drawBackgroundToggleTrue();
   virtual void drawBorderToggleTrue();
