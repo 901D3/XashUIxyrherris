@@ -6,11 +6,13 @@
 
 #include "Utils/TransformUtils.h"
 #include "Utils/CursorUtils.h"
+#include "Utils/ColorUtils.h"
 #include "Utils/ConvertUtils.h"
 #include "Utils/MathUtils.h"
 #include "Utils/Utils.h"
 
-// constructor
+// TODO: vertical slider feature
+
 UIElementSlider::UIElementSlider() {
   UIElement::elementID = ELEMENT_SLIDER;
 
@@ -22,10 +24,10 @@ UIElementSlider::UIElementSlider() {
 
   UIElementSlider::cvarValueType = CVAR_VALUE_TYPE_FLOAT;
 
-  thumbColor = packRGBAFromStruct(&presetColorWhite);
-  thumbColorMouseHover = packRGBAFromStruct(&presetColorOrange2);
-  thumbColorMouseHold = packRGBAFromStruct(&presetColorOrange2);
-  thumbColorDisabled = packRGBAFromStruct(&presetColorGrayDisabled);
+  thumbColor = ColorUtils::packRGBAFromStruct(&presetColorWhite);
+  thumbColorMouseHover = ColorUtils::packRGBAFromStruct(&presetColorOrange);
+  thumbColorMouseHold = ColorUtils::packRGBAFromStruct(&presetColorOrange2);
+  thumbColorDisabled = ColorUtils::packRGBAFromStruct(&presetColorGrayDisabled);
 
   thumbX = 0;
   thumbY = 0;
@@ -54,48 +56,52 @@ inline void UIElementSlider::drawThumb() {
   if (!thumbColor)
     return;
 
-  engineFunctions->pfnFillRGBA(shiftedThumbX, shiftedThumbY,
-                               scaledThumbWidth, scaledThumbHeight,
-                               thumbColor & 0xFF,
-                               (thumbColor >> 8) & 0xFF,
-                               (thumbColor >> 16) & 0xFF,
-                               (thumbColor >> 24) & 0xFF);
+  engineFunctions->pfnFillRGBA(
+    shiftedThumbX, shiftedThumbY,
+    scaledThumbWidth, scaledThumbHeight,
+    (thumbColor >> 24) & 0xFF,
+    (thumbColor >> 16) & 0xFF,
+    (thumbColor >> 8) & 0xFF,
+    thumbColor & 0xFF);
 }
 
 inline void UIElementSlider::drawThumbMouseHover() {
   if (!thumbColorMouseHover)
     return;
 
-  engineFunctions->pfnFillRGBA(shiftedThumbX, shiftedThumbY,
-                               scaledThumbWidth, scaledThumbHeight,
-                               thumbColorMouseHover & 0xFF,
-                               (thumbColorMouseHover >> 8) & 0xFF,
-                               (thumbColorMouseHover >> 16) & 0xFF,
-                               (thumbColorMouseHover >> 24) & 0xFF);
+  engineFunctions->pfnFillRGBA(
+    shiftedThumbX, shiftedThumbY,
+    scaledThumbWidth, scaledThumbHeight,
+    (thumbColorMouseHover >> 24) & 0xFF,
+    (thumbColorMouseHover >> 16) & 0xFF,
+    (thumbColorMouseHover >> 8) & 0xFF,
+    thumbColorMouseHover & 0xFF);
 }
 
 inline void UIElementSlider::drawThumbMouseHold() {
   if (!thumbColorMouseHold)
     return;
 
-  engineFunctions->pfnFillRGBA(shiftedThumbX, shiftedThumbY,
-                               scaledThumbWidth, scaledThumbHeight,
-                               thumbColorMouseHold & 0xFF,
-                               (thumbColorMouseHold >> 8) & 0xFF,
-                               (thumbColorMouseHold >> 16) & 0xFF,
-                               (thumbColorMouseHold >> 24) & 0xFF);
+  engineFunctions->pfnFillRGBA(
+    shiftedThumbX, shiftedThumbY,
+    scaledThumbWidth, scaledThumbHeight,
+    (thumbColorMouseHold >> 24) & 0xFF,
+    (thumbColorMouseHold >> 16) & 0xFF,
+    (thumbColorMouseHold >> 8) & 0xFF,
+    thumbColorMouseHold & 0xFF);
 }
 
 inline void UIElementSlider::drawThumbDisabled() {
   if (!thumbColorDisabled)
     return;
 
-  engineFunctions->pfnFillRGBA(shiftedThumbX, shiftedThumbY,
-                               scaledThumbWidth, scaledThumbHeight,
-                               thumbColorDisabled & 0xFF,
-                               (thumbColorDisabled >> 8) & 0xFF,
-                               (thumbColorDisabled >> 16) & 0xFF,
-                               (thumbColorDisabled >> 24) & 0xFF);
+  engineFunctions->pfnFillRGBA(
+    shiftedThumbX, shiftedThumbY,
+    scaledThumbWidth, scaledThumbHeight,
+    (thumbColorDisabled >> 24) & 0xFF,
+    (thumbColorDisabled >> 16) & 0xFF,
+    (thumbColorDisabled >> 8) & 0xFF,
+    thumbColorDisabled & 0xFF);
 }
 
 inline void UIElementSlider::setMin(float min) {
@@ -184,30 +190,44 @@ inline void UIElementSlider::setDimension(int width, int height) {
 void UIElementSlider::keyDown(int key) {
   if (CursorUtils::isMouseDown() || CursorUtils::isMouseHold()) {
     if (!CursorUtils::isMouseInRect(
-          UIElement::x, UIElement::y,
-          UIElement::width, UIElement::height,
+          UIElement::shiftedX, UIElement::shiftedY,
+          UIElement::scaledWidth, UIElement::scaledHeight,
           globalUIMouseContext.cursorX, globalUIMouseContext.cursorY)) {
       return;
     }
 
-    float scale = static_cast<float>(
-                    mcr_bound(minValueThumbX, globalUIMouseContext.cursorX - thumbWidth / 2, maxValueThumbX) - minValueThumbX)
-                  / (maxValueThumbX - minValueThumbX);
+    int shiftedMinValueThumbX = mcr_shiftX(minValueThumbX);
+    int shiftedMaxValueThumbX = mcr_shiftX(maxValueThumbX);
 
+    float scale
+      = static_cast<float>(
+          mcr_bound(
+            shiftedMinValueThumbX,
+            globalUIMouseContext.cursorX - scaledThumbWidth / 2,
+            shiftedMaxValueThumbX)
+          - shiftedMinValueThumbX)
+        / (shiftedMaxValueThumbX - shiftedMinValueThumbX);
+
+    static float prevValue;
     value = min + mcr_round_f(((min + (max - min) * scale) - min) / step) * step;
+
+    if (value == prevValue) // avoid redundant same value assigning
+      return;
+
+    prevValue = value;
 
     thumbX = mcr_bound(
       minValueThumbX,
       minValueThumbX + mcr_normalize(min, value, max) * (maxValueThumbX - minValueThumbX),
       maxValueThumbX);
 
+    shiftedThumbX = mcr_shiftX(thumbX);
+
     if (cvar) {
       char buffer[16];
       ConvertUtils::fastFloatToString<1000000000, 100>(buffer, value);
       UIElementExtensionCvar::setCvarString(buffer);
     }
-
-    // TODO: vertical slider feature
   }
 }
 
@@ -272,15 +292,13 @@ void UIElementSlider::render() {
       UIElement::drawBorder();
   }
 
-  float normalizedValue = mcr_normalize(min, value, max);
-
   thumbY = minValueThumbY; // TODO: vertical slider feature
 
   updateShiftedThumbPosition();
 
   if (!UIElement::enabled)
     drawThumbDisabled();
-  if (UIElement::mouseHover)
+  else if (UIElement::mouseHover)
     drawThumbMouseHover();
   else if (UIElement::mouseDown)
     drawThumbMouseHold();
