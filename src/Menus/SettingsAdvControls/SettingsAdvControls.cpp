@@ -3,8 +3,8 @@
 
 UIMenu menuSettingsAdvControls;
 
-void menuSettingsAdvControlsInit() {
+void menuSettingsAdvControlsRenderWrapper() {
 }
 
-void menuSettingsAdvControlsRenderWrapper() {
+void menuSettingsAdvControlsInit() {
 }
