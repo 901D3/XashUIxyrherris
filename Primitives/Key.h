@@ -4,5 +4,5 @@
 typedef enum {
   KEY_CONSOLE = 0,
   KEY_GAME,
-  KEY_MENU,
+  KEY_MENU
 } KeyDestEnums;

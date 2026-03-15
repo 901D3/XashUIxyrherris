@@ -7,21 +7,22 @@
 #include "Presets/PresetsBorder.h"
 
 #include "Utils/TransformUtils.h"
+#include "Utils/ColorUtils.h"
 #include "Utils/Utils.h"
 
 UIElement::UIElement() {
   elementID = ELEMENT_BASE;
 
   // style
-  backgroundColor = packRGBAFromStruct(&presetColorDarkerOrange);
-  backgroundColorMouseHover = packRGBAFromStruct(&presetColorGrayMouseHover);
-  backgroundColorMouseHold = packRGBAFromStruct(&presetColorOrange2MouseHold);
-  backgroundColorDisabled = packRGBAFromStruct(&presetColorGrayDisabled);
+  backgroundColor = ColorUtils::packRGBAFromStruct(&presetColorDarkerOrange);
+  backgroundColorMouseHover = ColorUtils::packRGBAFromStruct(&presetColorGrayMouseHover);
+  backgroundColorMouseHold = ColorUtils::packRGBAFromStruct(&presetColorOrange2MouseHold);
+  backgroundColorDisabled = ColorUtils::packRGBAFromStruct(&presetColorGrayDisabled);
 
-  borderColor = packRGBAFromStruct(&presetColorDarkOrange);
-  borderColorMouseHover = packRGBAFromStruct(&presetColorOrange2MouseHover);
-  borderColorMouseHold = packRGBAFromStruct(&presetColorGrayMouseHold);
-  borderColorDisabled = packRGBAFromStruct(&presetColorGrayDisabled);
+  borderColor = ColorUtils::packRGBAFromStruct(&presetColorDarkOrange);
+  borderColorMouseHover = ColorUtils::packRGBAFromStruct(&presetColorOrange2MouseHover);
+  borderColorMouseHold = ColorUtils::packRGBAFromStruct(&presetColorGrayMouseHold);
+  borderColorDisabled = ColorUtils::packRGBAFromStruct(&presetColorGrayDisabled);
 
   borderLeftWidth = 2;
   borderTopWidth = 2;
@@ -78,7 +79,8 @@ inline void UIElement::drawBackground() {
   if (backgroundColor == 0)
     return;
 
-  fillPackedRGBA(shiftedX, shiftedY,
+  fillPackedRGBA(
+    shiftedX, shiftedY,
     scaledWidth, scaledHeight,
     backgroundColor);
 }

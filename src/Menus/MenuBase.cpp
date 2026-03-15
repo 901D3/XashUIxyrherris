@@ -1,11 +1,9 @@
 
 #include "Menus/MenuBase.h" // UIMenu
-#include "Utils/Utils.h"         // mcr_ConsoleDebugLog
+#include "Utils/Utils.h"    // mcr_ConsoleDebugLog
 
 UIMenu::UIMenu() {
   elementCount = 0;
-
-  scaledToUIFactors = false;
 
   hoveringElement = nullptr;
   pressingElement = nullptr;
@@ -39,7 +37,7 @@ void UIMenu::pushBackElement(UIElement *element) {
 }
 
 void UIMenu::removeElement(const char *id) {
-  if (elementCount<=0) {
+  if (elementCount <= 0) {
     mcr_ConsoleDebugLog("No element to remove");
     return;
   }

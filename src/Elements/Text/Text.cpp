@@ -2,22 +2,22 @@
 #include "Base.h"
 #include "Elements/Text/Text.h"
 
-#include "Utils/CharUtils.h"
-#include "Utils/TransformUtils.h"
-#include "Utils/MathUtils.h"
-#include "Utils/Utils.h"
-
 #include "Presets/PresetsColor.h"
 #include "Primitives/Color.h"
 
-// constructor
+#include "Utils/CharUtils.h"
+#include "Utils/TransformUtils.h"
+#include "Utils/ColorUtils.h"
+#include "Utils/MathUtils.h"
+#include "Utils/Utils.h"
+
 UIElementText::UIElementText() {
   UIElement::elementID = ELEMENT_TEXT;
 
-  textColor = packRGBAFromStruct(&presetColorWhite);
-  textColorMouseHover = packRGBAFromStruct(&presetColorWhiteMouseHover);
-  textColorMouseHold = packRGBAFromStruct(&presetColorOrange2);
-  textColorDisabled = packRGBAFromStruct(&presetColorGrayDisabled);
+  textColor = ColorUtils::packRGBAFromStruct(&presetColorWhite);
+  textColorMouseHover = ColorUtils::packRGBAFromStruct(&presetColorWhiteMouseHover);
+  textColorMouseHold = ColorUtils::packRGBAFromStruct(&presetColorOrange2);
+  textColorDisabled = ColorUtils::packRGBAFromStruct(&presetColorGrayDisabled);
 
   widthScale = heightScale = 1;
   widthFitContent = heightFitContent = true;
@@ -97,31 +97,31 @@ void UIElementText::render() {
     if (!UIElement::enabled)
       engineFunctions->pfnPIC_Set(
         bitmapFontContext.fontHImage,
-        textColorDisabled & 0xFF,
-        (textColorDisabled >> 8) & 0xFF,
+        (textColorDisabled >> 24) & 0xFF,
         (textColorDisabled >> 16) & 0xFF,
-        (textColorDisabled >> 24) & 0xFF);
+        (textColorDisabled >> 8) & 0xFF,
+        textColorDisabled & 0xFF);
     else if (UIElement::mouseHover && !UIElement::mouseDown)
       engineFunctions->pfnPIC_Set(
         bitmapFontContext.fontHImage,
-        textColorMouseHover & 0xFF,
-        (textColorMouseHover >> 8) & 0xFF,
+        (textColorMouseHover >> 24) & 0xFF,
         (textColorMouseHover >> 16) & 0xFF,
-        (textColorMouseHover >> 24) & 0xFF);
+        (textColorMouseHover >> 8) & 0xFF,
+        textColorMouseHover & 0xFF);
     else if (UIElement::mouseDown)
       engineFunctions->pfnPIC_Set(
         bitmapFontContext.fontHImage,
-        textColorMouseHold & 0xFF,
-        (textColorMouseHold >> 8) & 0xFF,
+        (textColorMouseHold >> 24) & 0xFF,
         (textColorMouseHold >> 16) & 0xFF,
-        (textColorMouseHold >> 24) & 0xFF);
+        (textColorMouseHold >> 8) & 0xFF,
+        textColorMouseHold & 0xFF);
     else
       engineFunctions->pfnPIC_Set(
         bitmapFontContext.fontHImage,
-        textColor & 0xFF,
-        (textColor >> 8) & 0xFF,
+        (textColor >> 24) & 0xFF,
         (textColor >> 16) & 0xFF,
-        (textColor >> 24) & 0xFF);
+        (textColor >> 8) & 0xFF,
+        textColor & 0xFF);
 
     if (useConsoleFont) {
       char string[2] = {static_cast<char>(character), 0};

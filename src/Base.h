@@ -16,6 +16,8 @@ extern UIContext globalUIContext;
 extern UIMouseContext globalUIMouseContext;
 extern UIKeyContext globalUIKeyContext;
 
+extern void fillPackedRGBA(int x, int y, int width, int height, unsigned int rgba);
+
 extern void mouseEventsLog();
 extern void mouseEventsReset();
 

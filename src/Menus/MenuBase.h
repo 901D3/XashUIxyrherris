@@ -12,8 +12,6 @@ public:
   UIElement *elementsContainer[MAX_ELEMENTS]; // ptr to elements
   int elementCount;
 
-  bool scaledToUIFactors;
-
   // TODO: an array of hovering, pressing, focusing elements for multitouch
   // Src/Base.cpp/elementMouseController
   UIElement *hoveringElement; // mouse only?

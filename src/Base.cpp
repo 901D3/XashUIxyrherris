@@ -20,6 +20,16 @@ UIContext globalUIContext;
 UIMouseContext globalUIMouseContext;
 UIKeyContext globalUIKeyContext;
 
+void fillPackedRGBA(int x, int y, int width, int height, unsigned int rgba) {
+  engineFunctions->pfnFillRGBA(
+    x, y,
+    width, height,
+    (rgba >> 24) & 0xFF,
+    (rgba >> 16) & 0xFF,
+    (rgba >> 8) & 0xFF,
+    rgba & 0xFF);
+}
+
 void mouseEventsLog() {
   mcr_ConsoleDebugLog(
     "mouseDown: %i, lastMouseDown: %i, mouseMove: %i, lastMouseMove: %i, mouseDouble: %i",

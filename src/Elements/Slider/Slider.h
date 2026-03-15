@@ -65,7 +65,7 @@ public:
 
   // overrides
   void setX(int x);
-  void setY(int x);
+  void setY(int y);
   void setPosition(int x, int y);
 
   void setWidth(int width);
