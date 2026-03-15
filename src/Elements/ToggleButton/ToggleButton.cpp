@@ -1,4 +1,3 @@
-// YET TO BE COMPLETETED
 
 #include "Base.h"
 #include "Elements/ToggleButton/ToggleButton.h"
@@ -10,7 +9,6 @@
 #include "Utils/MathUtils.h"
 #include "Utils/Utils.h"
 
-// constructor
 UIElementToggleButton::UIElementToggleButton() {
   UIElement::elementID = ELEMENT_TOGGLE_BUTTON;
 
@@ -22,8 +20,6 @@ UIElementToggleButton::UIElementToggleButton() {
   UIElement::width = 24;
   UIElement::height = 24;
 
-  // onMouseUpBuiltIn.FunctionWithClassInstance::bind(this->UIElementToggleButton::mouseUp, this);
-
   toggle = false;
 
   backgroundColorToggleTrue = packRGBAFromStruct(&presetColorOrange2);
@@ -31,6 +27,15 @@ UIElementToggleButton::UIElementToggleButton() {
 }
 
 UIElementToggleButton::~UIElementToggleButton() {
+}
+
+void UIElementToggleButton::toggleHelper() {
+  toggle = !toggle;
+
+  if (UIElementExtensionCvar::cvar) {
+    const char string[2] = {'0' + static_cast<bool>(toggle), 0};
+    UIElementExtensionCvar::setCvarString(string);
+  }
 }
 
 inline void UIElementToggleButton::drawBackgroundToggleTrue() {
@@ -94,7 +99,4 @@ void UIElementToggleButton::render() {
     else
       UIElement::drawBorder();
   }
-
-  if (UIElementExtensionCvar::cvar)
-    toggle = *(engineFunctions->pfnGetCvarString(UIElementExtensionCvar::cvar)) == '1';
 }
