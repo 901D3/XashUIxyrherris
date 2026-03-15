@@ -69,13 +69,6 @@ inline void UIElementToggleButton::drawBorderToggleTrue() {
       borderColorToggleTrue);
 }
 
-void UIElementToggleButton::mouseUp() {
-  toggle = !toggle;
-
-  const char string[2] = {'0' + static_cast<bool>(0), '\0'};
-  UIElementExtensionCvar::setCvarString(string);
-}
-
 void UIElementToggleButton::render() {
   if (!UIElement::visible || !UIElement::width || !UIElement::height)
     return;
