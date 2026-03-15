@@ -2,6 +2,7 @@
 #pragma once
 
 namespace CursorUtils {
+
   inline bool isMouseInRect(
     int x, int y,
     int width, int height,
@@ -42,4 +43,5 @@ namespace CursorUtils {
   inline bool isMouseNotMoving() {
     return (!globalUIMouseContext.mouseMove && !globalUIMouseContext.lastMouseMove);
   }
+
 } // namespace CursorUtils

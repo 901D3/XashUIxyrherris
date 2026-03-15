@@ -4,6 +4,7 @@
 #include <string>
 
 namespace CharUtils {
+
   inline unsigned int UTF8ToUnicodeCP(const std::string &string, int &index) {
     unsigned char character = string[index];
 
@@ -40,4 +41,5 @@ namespace CharUtils {
     else if (codepoint == 0x0451)
       codepoint = 0xB8;
   }
+
 } // namespace CharUtils

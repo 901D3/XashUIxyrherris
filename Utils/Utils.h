@@ -8,7 +8,7 @@
 
 #define mcr_ConsoleDebugLog(fmt, ...) ( \
   engineFunctions->Con_Printf( \
-    "[%s/%s:%i]>" fmt "\n", \
+    "UI:[%s/%s:%i]>" fmt "\n", \
     __FILENAME__, \
     __func__, \
     __LINE__, \

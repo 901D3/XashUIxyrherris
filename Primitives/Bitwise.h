@@ -1,9 +1,6 @@
 
 #pragma once
 
-#define mcr_bitUint(n) (1U << (n))
-#define mcr_bitUlonglong(n) (1ULL << (n))
-
 #define UINT8MAX (static_cast<char>(~0u))
 #define INT8MAX (static_cast<char>(UINT8MAX >> 1))
 #define INT8MIN (static_cast<char>(-(UINT8MAX >> 1) - 1))

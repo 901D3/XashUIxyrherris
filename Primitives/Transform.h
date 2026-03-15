@@ -27,10 +27,3 @@ typedef enum {
   ALIGMENT_BOTTOM_RIGHT = BORDER_BOTTOM | BORDER_RIGHT
 } Aligment;
 
-typedef struct {
-  int x, y;
-} Position;
-
-typedef struct {
-  int width, height;
-} Dimension;
