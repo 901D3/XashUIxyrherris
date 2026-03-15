@@ -79,7 +79,8 @@ inline void UIElement::drawBackground() {
   if (backgroundColor == 0)
     return;
 
-  fillPackedRGBA(shiftedX, shiftedY,
+  fillPackedRGBA(
+    shiftedX, shiftedY,
     scaledWidth, scaledHeight,
     backgroundColor);
 }
