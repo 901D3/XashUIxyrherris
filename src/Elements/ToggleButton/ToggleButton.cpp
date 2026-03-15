@@ -6,6 +6,7 @@
 #include "Primitives/Color.h"
 
 #include "Utils/ConvertUtils.h"
+#include "Utils/ColorUtils.h"
 #include "Utils/MathUtils.h"
 #include "Utils/Utils.h"
 
@@ -13,7 +14,7 @@ UIElementToggleButton::UIElementToggleButton() {
   UIElement::elementID = ELEMENT_TOGGLE_BUTTON;
 
   UIElement::backgroundColor = 0x777777AE;
-  UIElement::borderColor = packRGBAFromStruct(&presetColorOrange2MouseHold);
+  UIElement::borderColor = ColorUtils::packRGBAFromStruct(&presetColorOrange2MouseHold);
 
   UIElement::background = true;
   UIElement::border = true;
@@ -22,8 +23,8 @@ UIElementToggleButton::UIElementToggleButton() {
 
   toggle = false;
 
-  backgroundColorToggleTrue = packRGBAFromStruct(&presetColorOrange2);
-  borderColorToggleTrue = packRGBAFromStruct(&presetColorOrange2MouseHover);
+  backgroundColorToggleTrue = ColorUtils::packRGBAFromStruct(&presetColorOrange2);
+  borderColorToggleTrue = ColorUtils::packRGBAFromStruct(&presetColorOrange2MouseHover);
 }
 
 UIElementToggleButton::~UIElementToggleButton() {
