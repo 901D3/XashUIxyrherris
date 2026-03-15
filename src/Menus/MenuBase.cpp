@@ -37,7 +37,7 @@ void UIMenu::pushBackElement(UIElement *element) {
 }
 
 void UIMenu::removeElement(const char *id) {
-  if (elementCount<=0) {
+  if (elementCount <= 0) {
     mcr_ConsoleDebugLog("No element to remove");
     return;
   }
