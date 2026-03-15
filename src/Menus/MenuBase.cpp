@@ -1,11 +1,9 @@
 
 #include "Menus/MenuBase.h" // UIMenu
-#include "Utils/Utils.h"         // mcr_ConsoleDebugLog
+#include "Utils/Utils.h"    // mcr_ConsoleDebugLog
 
 UIMenu::UIMenu() {
   elementCount = 0;
-
-  scaledToUIFactors = false;
 
   hoveringElement = nullptr;
   pressingElement = nullptr;
