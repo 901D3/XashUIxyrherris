@@ -1,4 +1,5 @@
 
+#include "keydefs.h"
 #include "FUNCTION_EXPORTING.h"
 #include "Base.h"
 #include "Commands.h"
