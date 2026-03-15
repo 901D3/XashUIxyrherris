@@ -1,10 +1,10 @@
 
 #include "Menus/MenusExport.h"
 
-UIMenu menuSettingsControlsAdvControls;
+UIMenu menuSettingsAdvControls;
 
-void menuSettingsControlsAdvControlsInit() {
+void menuSettingsAdvControlsInit() {
 }
 
-void menuSettingsControlsAdvControlsRenderWrapper() {
+void menuSettingsAdvControlsRenderWrapper() {
 }
