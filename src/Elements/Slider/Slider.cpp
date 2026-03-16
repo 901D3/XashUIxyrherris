@@ -188,13 +188,13 @@ inline void UIElementSlider::setDimension(int width, int height) {
 }
 
 void UIElementSlider::keyDown(int key) {
-  if (CursorUtils::isMouseDown() || CursorUtils::isMouseHold()) {
-    if (!CursorUtils::isMouseInRect(
-          UIElement::shiftedX, UIElement::shiftedY,
-          UIElement::scaledWidth, UIElement::scaledHeight,
-          globalUIMouseContext.cursorX, globalUIMouseContext.cursorY)) {
-      return;
-    }
+  if ((CursorUtils::isMouseDown(globalUIMouseContext.mouseDown, globalUIMouseContext.lastMouseDown)
+       || CursorUtils::isMouseHold(globalUIMouseContext.mouseDown, globalUIMouseContext.lastMouseDown))
+
+      && CursorUtils::isMouseInRect(
+        UIElement::shiftedX, UIElement::shiftedY,
+        UIElement::scaledWidth, UIElement::scaledHeight,
+        globalUIMouseContext.cursorX, globalUIMouseContext.cursorY)) {
 
     int shiftedMinValueThumbX = mcr_shiftX(minValueThumbX);
     int shiftedMaxValueThumbX = mcr_shiftX(maxValueThumbX);
