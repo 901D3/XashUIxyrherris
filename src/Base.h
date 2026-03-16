@@ -4,13 +4,17 @@
 
 #pragma once
 
-#include "EngineStuff.h"
+#include "XashEngineRelated/XashKey.h"
 
+#include "EngineStuff.h"
+#include "UIDefs.h"
 #include "Menus/MenuDefs.h"
 
-#include "UIDefs.h"
+#define UI_BASE_WIDTH 1024
+#define UI_BASE_HEIGHT 768
 
-#include "Primitives/Key.h"
+#define UI_TARGET_ASPECT_WIDTH 4
+#define UI_TARGET_ASPECT_HEIGHT 3
 
 extern UIContext globalUIContext;
 extern UIMouseContext globalUIMouseContext;
