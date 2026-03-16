@@ -33,7 +33,6 @@ namespace CursorUtils {
     return (!mouseDown && !lastMouseDown);
   }
 
-  // no smoothing mouse move
   inline bool isMouseMoveStart(bool mouseMove, bool lastMouseMove) {
     return (mouseMove && !lastMouseMove);
   }
