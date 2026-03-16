@@ -2,11 +2,9 @@
 #include "Menus/MenusExport.h"
 #include "Elements/Text/Text.h"
 
-#include "Primitives/Key.h"
-
 #include "Presets/PresetsTransform.h"
 
-#include "Utils/Utils.h"
+#include "ProjectUtils/Utils.h"
 
 #define MENU_SETTINGS_ELEMENT_COUNT 7
 
