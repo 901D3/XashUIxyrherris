@@ -1,9 +1,10 @@
 
 #pragma once
 
+#include "Primitives/Function.h"
+
 #include "Base.h"
 #include "Elements/ElementExtensions/ElementExtensionCvar.h"
-#include "Primitives/Function.h"
 
 class UIElementToggleButton
     : public UIElement,
