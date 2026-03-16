@@ -1,12 +1,13 @@
 
 #pragma once
 
+#include "Primitives/Transform.h"
+#include "Primitives/Function.h"
+#include "Primitives/Color.h"
+
 #include <string> // std::string
 
 #include "Elements/ElementDefs.h"
-#include "Presets/PresetsBorder.h"
-#include "Primitives/Function.h"
-#include "Primitives/Color.h"
 
 // TODO: document this
 class UIElement {
