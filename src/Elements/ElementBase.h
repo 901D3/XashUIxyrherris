@@ -44,7 +44,7 @@ public:
   bool border;
   bool additiveBlend;
 
-  BorderSides borderSides;
+  Alignment borderSides;
 
   // transform
   int x;
