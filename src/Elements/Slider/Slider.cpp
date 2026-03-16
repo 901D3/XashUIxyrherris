@@ -4,12 +4,12 @@
 
 #include "Presets/PresetsColor.h"
 
-#include "Utils/TransformUtils.h"
+#include "ProjectUtils/TransformUtils.h"
+#include "ProjectUtils/Utils.h"
 #include "Utils/CursorUtils.h"
 #include "Utils/ColorUtils.h"
 #include "Utils/ConvertUtils.h"
 #include "Utils/MathUtils.h"
-#include "Utils/Utils.h"
 
 // TODO: vertical slider feature
 
