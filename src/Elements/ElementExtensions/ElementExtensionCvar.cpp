@@ -2,8 +2,10 @@
 #include <stddef.h>
 
 #include "Elements/ElementExtensions/ElementExtensionCvar.h"
+
 #include "Utils/ConvertUtils.h"
-#include "Utils/Shortcuts.h"
+
+#include "Shortcuts.h"
 
 UIElementExtensionCvar::UIElementExtensionCvar() {
   cvar = nullptr;
