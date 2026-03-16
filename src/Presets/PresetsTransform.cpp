@@ -3,7 +3,7 @@
 #include "Presets/PresetsTransform.h"
 
 void buttonAlignmentGenerateList(
-  Position* positions,
+  Position *positions,
   int offsetX,
   int offsetY,
   int spaceX,
