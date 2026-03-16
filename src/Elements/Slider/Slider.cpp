@@ -4,12 +4,12 @@
 
 #include "Presets/PresetsColor.h"
 
-#include "Utils/TransformUtils.h"
+#include "ProjectUtils/TransformUtils.h"
+#include "ProjectUtils/Utils.h"
 #include "Utils/CursorUtils.h"
 #include "Utils/ColorUtils.h"
 #include "Utils/ConvertUtils.h"
 #include "Utils/MathUtils.h"
-#include "Utils/Utils.h"
 
 // TODO: vertical slider feature
 
@@ -188,13 +188,13 @@ inline void UIElementSlider::setDimension(int width, int height) {
 }
 
 void UIElementSlider::keyDown(int key) {
-  if (CursorUtils::isMouseDown() || CursorUtils::isMouseHold()) {
-    if (!CursorUtils::isMouseInRect(
-          UIElement::shiftedX, UIElement::shiftedY,
-          UIElement::scaledWidth, UIElement::scaledHeight,
-          globalUIMouseContext.cursorX, globalUIMouseContext.cursorY)) {
-      return;
-    }
+  if ((CursorUtils::isMouseDown(globalUIMouseContext.mouseDown, globalUIMouseContext.lastMouseDown)
+       || CursorUtils::isMouseHold(globalUIMouseContext.mouseDown, globalUIMouseContext.lastMouseDown))
+
+      && CursorUtils::isMouseInRect(
+        UIElement::shiftedX, UIElement::shiftedY,
+        UIElement::scaledWidth, UIElement::scaledHeight,
+        globalUIMouseContext.cursorX, globalUIMouseContext.cursorY)) {
 
     int shiftedMinValueThumbX = mcr_shiftX(minValueThumbX);
     int shiftedMaxValueThumbX = mcr_shiftX(maxValueThumbX);

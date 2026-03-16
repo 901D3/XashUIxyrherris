@@ -1,4 +1,6 @@
 
+#pragma once
+
 #include "extdll_menu.h"
 
 // UI_FUNCTIONS

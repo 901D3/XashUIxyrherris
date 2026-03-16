@@ -106,7 +106,7 @@ void elementMouseEventsController() {
 
   currentMenu->UIMenu::hoveringElement = newHoveringElement; // update old hovering element to the new one
 
-  if (CursorUtils::isMouseDown() && newHoveringElement) {
+  if (CursorUtils::isMouseDown(globalUIMouseContext.mouseDown, globalUIMouseContext.lastMouseDown) && newHoveringElement) {
     currentMenu->UIMenu::pressingElement = newHoveringElement;
 
     newHoveringElement->UIElement::mouseDown = true;
@@ -121,10 +121,10 @@ void elementMouseEventsController() {
   UIElement *pressingElement = currentMenu->UIMenu::pressingElement;
 
   if (pressingElement) {
-    if (CursorUtils::isMouseHold())
+    if (CursorUtils::isMouseHold(globalUIMouseContext.mouseDown, globalUIMouseContext.lastMouseDown))
       pressingElement->UIElement::onMouseHold(); // call onMouseHold continuously
 
-    if (CursorUtils::isMouseUp()) {
+    if (CursorUtils::isMouseUp(globalUIMouseContext.mouseDown, globalUIMouseContext.lastMouseDown)) {
       pressingElement->UIElement::mouseDown = false;
 
       if (pressingElement->UIElement::lastMouseDown) {
@@ -136,7 +136,7 @@ void elementMouseEventsController() {
     }
 
     // there are some cases where element mouse hold is stale
-    if (CursorUtils::isMouseIdle()) {
+    if (CursorUtils::isMouseIdle(globalUIMouseContext.mouseDown, globalUIMouseContext.lastMouseDown)) {
       pressingElement->UIElement::mouseDown = false;
       pressingElement->UIElement::lastMouseDown = false;
     }

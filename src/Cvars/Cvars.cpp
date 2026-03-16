@@ -3,8 +3,9 @@
 
 #include "Managers/Background/Background.h" // BackgroundTransformStyleEnums, bitmapBackgroundTransformStyleSwitch
 #include "Managers/Font/FontDefs.h"         // FontEnums
-#include "Utils/ConvertUtils.h"             // ConvertUtils
-#include "Utils/MathUtils.h"                // mcr_clampUint8
+
+#include "Utils/ConvertUtils.h" // ConvertUtils
+#include "Utils/MathUtils.h"    // mcr_clampUint8
 
 CvarMirrors cvarMirrors;
 

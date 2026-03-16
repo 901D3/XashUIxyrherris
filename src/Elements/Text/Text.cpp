@@ -5,11 +5,11 @@
 #include "Presets/PresetsColor.h"
 #include "Primitives/Color.h"
 
+#include "ProjectUtils/TransformUtils.h"
+#include "ProjectUtils/Utils.h"
 #include "Utils/CharUtils.h"
-#include "Utils/TransformUtils.h"
 #include "Utils/ColorUtils.h"
 #include "Utils/MathUtils.h"
-#include "Utils/Utils.h"
 
 UIElementText::UIElementText() {
   UIElement::elementID = ELEMENT_TEXT;

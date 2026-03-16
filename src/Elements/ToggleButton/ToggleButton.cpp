@@ -1,14 +1,15 @@
 
+#include "Primitives/Color.h"
+
 #include "Base.h"
 #include "Elements/ToggleButton/ToggleButton.h"
 
 #include "Presets/PresetsColor.h"
-#include "Primitives/Color.h"
 
+#include "ProjectUtils/Utils.h"
 #include "Utils/ConvertUtils.h"
 #include "Utils/ColorUtils.h"
 #include "Utils/MathUtils.h"
-#include "Utils/Utils.h"
 
 UIElementToggleButton::UIElementToggleButton() {
   UIElement::elementID = ELEMENT_TOGGLE_BUTTON;
@@ -50,25 +51,25 @@ inline void UIElementToggleButton::drawBackgroundToggleTrue() {
 }
 
 inline void UIElementToggleButton::drawBorderToggleTrue() {
-  if (borderSides & BORDER_LEFT && scaledBorderLeftWidth)
+  if (borderSides & ALIGNMENT_LEFT && scaledBorderLeftWidth)
     fillPackedRGBA(
       UIElement::shiftedX, UIElement::shiftedY + UIElement::scaledBorderTopWidth,
       UIElement::scaledBorderLeftWidth, UIElement::scaledHeight - UIElement::scaledBorderBottomWidth * 2,
       borderColorToggleTrue);
 
-  if (borderSides & BORDER_TOP && scaledBorderTopWidth)
+  if (borderSides & ALIGNMENT_TOP && scaledBorderTopWidth)
     fillPackedRGBA(
       UIElement::shiftedX, UIElement::shiftedY,
       UIElement::scaledWidth, UIElement::scaledBorderTopWidth,
       borderColorToggleTrue);
 
-  if (borderSides & BORDER_RIGHT && scaledBorderRightWidth)
+  if (borderSides & ALIGNMENT_RIGHT && scaledBorderRightWidth)
     fillPackedRGBA(
       UIElement::shiftedX + UIElement::scaledWidth - UIElement::scaledBorderRightWidth, UIElement::shiftedY + UIElement::scaledBorderTopWidth,
       UIElement::scaledBorderRightWidth, UIElement::scaledHeight - UIElement::scaledBorderBottomWidth * 2,
       borderColorToggleTrue);
 
-  if (borderSides & BORDER_BOTTOM && scaledBorderBottomWidth)
+  if (borderSides & ALIGNMENT_BOTTOM && scaledBorderBottomWidth)
     fillPackedRGBA(
       UIElement::shiftedX, UIElement::shiftedY + UIElement::scaledHeight - UIElement::scaledBorderBottomWidth,
       UIElement::scaledWidth, UIElement::scaledBorderBottomWidth,

@@ -1,6 +1,8 @@
 
 #pragma once
 
+#include "Primitives/Function.h" // PtrToVoidFunction
+
 #include <stdint.h> // uintptr_t
 
 #include "cvardef.h" // cvar_t, FCVAR enums
@@ -9,8 +11,6 @@
 
 #include "Managers/Font/FontDefs.h"             // FontEnums
 #include "Managers/Background/BackgroundDefs.h" // BackgroundTransformStyleEnums
-
-#include "Primitives/Function.h" // PtrToVoidFunction
 
 // UI only vars
 typedef struct {

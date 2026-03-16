@@ -6,11 +6,9 @@
 #include "Elements/Slider/Slider.h"
 #include "Elements/ToggleButton/ToggleButton.h"
 
-#include "Primitives/Key.h"
-
 #include "Presets/PresetsTransform.h"
 
-#include "Utils/Utils.h"
+#include "ProjectUtils/Utils.h"
 
 #define MENU_SETTINGS_AUDIO_ELEMENT_COUNT 20
 

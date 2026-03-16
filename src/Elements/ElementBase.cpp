@@ -1,14 +1,16 @@
 
+#include "Primitives/Transform.h"
+
 #include "Base.h"
 #include "EngineStuff.h"
+
 #include "Elements/ElementBase.h"
 
 #include "Presets/PresetsColor.h"
-#include "Presets/PresetsBorder.h"
 
-#include "Utils/TransformUtils.h"
+#include "ProjectUtils/TransformUtils.h"
+#include "ProjectUtils/Utils.h"
 #include "Utils/ColorUtils.h"
-#include "Utils/Utils.h"
 
 UIElement::UIElement() {
   elementID = ELEMENT_BASE;
@@ -37,7 +39,7 @@ UIElement::UIElement() {
   enabled = true;
   visible = true;
   background = border = false;
-  borderSides = BORDER_ALL;
+  borderSides = ALIGNMENT_CENTER;
 
   // transform
   x = 0;
@@ -76,9 +78,6 @@ UIElement::~UIElement() {
 }
 
 inline void UIElement::drawBackground() {
-  if (backgroundColor == 0)
-    return;
-
   fillPackedRGBA(
     shiftedX, shiftedY,
     scaledWidth, scaledHeight,
@@ -86,9 +85,6 @@ inline void UIElement::drawBackground() {
 }
 
 inline void UIElement::drawBackgroundMouseHover() {
-  if (backgroundColorMouseHover == 0)
-    return;
-
   fillPackedRGBA(
     shiftedX, shiftedY,
     scaledWidth, scaledHeight,
@@ -96,9 +92,6 @@ inline void UIElement::drawBackgroundMouseHover() {
 }
 
 inline void UIElement::drawBackgroundMouseHold() {
-  if (backgroundColorMouseHold == 0)
-    return;
-
   fillPackedRGBA(
     shiftedX, shiftedY,
     scaledWidth, scaledHeight,
@@ -106,9 +99,6 @@ inline void UIElement::drawBackgroundMouseHold() {
 }
 
 inline void UIElement::drawBackgroundDisabled() {
-  if (backgroundColorDisabled == 0)
-    return;
-
   fillPackedRGBA(
     shiftedX, shiftedY,
     scaledWidth, scaledHeight,
@@ -116,25 +106,25 @@ inline void UIElement::drawBackgroundDisabled() {
 }
 
 inline void UIElement::drawBorder() {
-  if (borderSides & BORDER_LEFT && scaledBorderLeftWidth)
+  if ((borderSides & ALIGNMENT_LEFT) && scaledBorderLeftWidth)
     fillPackedRGBA(
       shiftedX, shiftedY + scaledBorderTopWidth,
       scaledBorderLeftWidth, scaledHeight - scaledBorderBottomWidth * 2,
       borderColor);
 
-  if (borderSides & BORDER_TOP && scaledBorderTopWidth)
+  if ((borderSides & ALIGNMENT_TOP) && scaledBorderTopWidth)
     fillPackedRGBA(
       shiftedX, shiftedY,
       scaledWidth, scaledBorderTopWidth,
       borderColor);
 
-  if (borderSides & BORDER_RIGHT && scaledBorderRightWidth)
+  if ((borderSides & ALIGNMENT_RIGHT) && scaledBorderRightWidth)
     fillPackedRGBA(
       shiftedX + scaledWidth - scaledBorderRightWidth, shiftedY + scaledBorderTopWidth,
       scaledBorderRightWidth, scaledHeight - scaledBorderBottomWidth * 2,
       borderColor);
 
-  if (borderSides & BORDER_BOTTOM && scaledBorderBottomWidth)
+  if ((borderSides & ALIGNMENT_BOTTOM) && scaledBorderBottomWidth)
     fillPackedRGBA(
       shiftedX, shiftedY + scaledHeight - scaledBorderBottomWidth,
       scaledWidth, scaledBorderBottomWidth,
@@ -142,25 +132,25 @@ inline void UIElement::drawBorder() {
 }
 
 inline void UIElement::drawBorderMouseHover() {
-  if (borderSides & BORDER_LEFT && scaledBorderLeftWidth)
+  if ((borderSides & ALIGNMENT_LEFT) && scaledBorderLeftWidth)
     fillPackedRGBA(
       shiftedX, shiftedY + scaledBorderTopWidth,
       scaledBorderLeftWidth, scaledHeight - scaledBorderBottomWidth * 2,
       borderColorMouseHover);
 
-  if (borderSides & BORDER_TOP && scaledBorderTopWidth)
+  if ((borderSides & ALIGNMENT_TOP) && scaledBorderTopWidth)
     fillPackedRGBA(
       shiftedX, shiftedY,
       scaledWidth, scaledBorderTopWidth,
       borderColorMouseHover);
 
-  if (borderSides & BORDER_RIGHT && scaledBorderRightWidth)
+  if ((borderSides & ALIGNMENT_RIGHT) && scaledBorderRightWidth)
     fillPackedRGBA(
       shiftedX + scaledWidth - scaledBorderRightWidth, shiftedY + scaledBorderTopWidth,
       scaledBorderRightWidth, scaledHeight - scaledBorderBottomWidth * 2,
       borderColorMouseHover);
 
-  if (borderSides & BORDER_BOTTOM && scaledBorderBottomWidth)
+  if ((borderSides & ALIGNMENT_BOTTOM) && scaledBorderBottomWidth)
     fillPackedRGBA(
       shiftedX, shiftedY + scaledHeight - scaledBorderBottomWidth,
       scaledWidth, scaledBorderBottomWidth,
@@ -168,25 +158,25 @@ inline void UIElement::drawBorderMouseHover() {
 }
 
 inline void UIElement::drawBorderMouseHold() {
-  if (borderSides & BORDER_LEFT && scaledBorderLeftWidth)
+  if ((borderSides & ALIGNMENT_LEFT) && scaledBorderLeftWidth)
     fillPackedRGBA(
       shiftedX, shiftedY + scaledBorderTopWidth,
       scaledBorderLeftWidth, scaledHeight - scaledBorderBottomWidth * 2,
       borderColorMouseHold);
 
-  if (borderSides & BORDER_TOP && scaledBorderTopWidth)
+  if ((borderSides & ALIGNMENT_TOP) && scaledBorderTopWidth)
     fillPackedRGBA(
       shiftedX, shiftedY,
       scaledWidth, scaledBorderTopWidth,
       borderColorMouseHold);
 
-  if (borderSides & BORDER_RIGHT && scaledBorderRightWidth)
+  if ((borderSides & ALIGNMENT_RIGHT) && scaledBorderRightWidth)
     fillPackedRGBA(
       shiftedX + scaledWidth - scaledBorderRightWidth, shiftedY + scaledBorderTopWidth,
       scaledBorderRightWidth, scaledHeight - scaledBorderBottomWidth * 2,
       borderColorMouseHold);
 
-  if (borderSides & BORDER_BOTTOM && scaledBorderBottomWidth)
+  if ((borderSides & ALIGNMENT_BOTTOM) && scaledBorderBottomWidth)
     fillPackedRGBA(
       shiftedX, shiftedY + scaledHeight - scaledBorderBottomWidth,
       scaledWidth, scaledBorderBottomWidth,
@@ -194,25 +184,25 @@ inline void UIElement::drawBorderMouseHold() {
 }
 
 inline void UIElement::drawBorderDisabled() {
-  if (borderSides & BORDER_LEFT && scaledBorderLeftWidth)
+  if ((borderSides & ALIGNMENT_LEFT) && scaledBorderLeftWidth)
     fillPackedRGBA(
       shiftedX, shiftedY + scaledBorderTopWidth,
       scaledBorderLeftWidth, scaledHeight - scaledBorderBottomWidth * 2,
       borderColorDisabled);
 
-  if (borderSides & BORDER_TOP && scaledBorderTopWidth)
+  if ((borderSides & ALIGNMENT_TOP) && scaledBorderTopWidth)
     fillPackedRGBA(
       shiftedX, shiftedY,
       scaledWidth, scaledBorderTopWidth,
       borderColorDisabled);
 
-  if (borderSides & BORDER_RIGHT && scaledBorderRightWidth)
+  if ((borderSides & ALIGNMENT_RIGHT) && scaledBorderRightWidth)
     fillPackedRGBA(
       shiftedX + scaledWidth - scaledBorderRightWidth, shiftedY + scaledBorderTopWidth,
       scaledBorderRightWidth, scaledHeight - scaledBorderBottomWidth * 2,
       borderColorDisabled);
 
-  if (borderSides & BORDER_BOTTOM && scaledBorderBottomWidth)
+  if ((borderSides & ALIGNMENT_BOTTOM) && scaledBorderBottomWidth)
     fillPackedRGBA(
       shiftedX, shiftedY + scaledHeight - scaledBorderBottomWidth,
       scaledWidth, scaledBorderBottomWidth,
