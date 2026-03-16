@@ -4,11 +4,12 @@
 
 #pragma once
 
+#include "Primitives/Function.h" // PtrToVoidFunction
+
+#include "XashEngineRelated/XashKey.h"
+
 #include "Menus/MenuDefs.h" // MenuEnums
 #include "Menus/MenuBase.h" // UIMenu
-
-#include "Primitives/Key.h"      // KeyDestEnums
-#include "Primitives/Function.h" // PtrToVoidFunction
 
 #define CURRENT_MENU (globalUIContext.ptrToMenuContainers[globalUIContext.menu])
 
