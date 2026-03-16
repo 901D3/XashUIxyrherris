@@ -1,6 +1,7 @@
 
+#include "ProjectUtils/Utils.h"
+
 #include "Menus/MenuBase.h" // UIMenu
-#include "Utils/Utils.h"    // mcr_ConsoleDebugLog
 
 UIMenu::UIMenu() {
   elementCount = 0;
