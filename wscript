@@ -15,7 +15,6 @@ def options(opt):
 
 def configure(conf):
     conf.load("fwgslib cxx11")
-    conf.env.append_unique("DEFINES", "STDINT_H=<cstdint>")
 
     nortti = {"msvc": ["/GR-"], "default": ["-fno-rtti"]}
     conf.env.append_unique(
