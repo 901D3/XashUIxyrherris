@@ -61,21 +61,20 @@ namespace ColorUtils {
     *b = rgb & 0xFF;
   }
 
-  inline unsigned short RGBA888ToRGB565(
+  inline unsigned short RGBX8888ToRGB565(
     unsigned char r,
     unsigned char g,
     unsigned char b) {
 
-    return (
-      ((r >> 3) << 11) | ((g >> 2) << 5) | (b >> 3));
+    return ((r << 8) | (g << 3) | (b >> 3));
   }
 
-  inline unsigned short packedRGBA888ToRGB565(unsigned int packedRGBA) {
-    unsigned char r = (packedRGBA >> 24) & 0xFF;
-    unsigned char g = (packedRGBA >> 16) & 0xFF;
-    unsigned char b = (packedRGBA >> 8) & 0xFF;
+  inline unsigned short packedRGBX8888ToRGB565(unsigned int color) {
+    unsigned char r = (color >> 24) & 0xFF;
+    unsigned char g = (color >> 16) & 0xFF;
+    unsigned char b = (color >> 8) & 0xFF;
 
-    return RGBA888ToRGB565(r, g, b);
+    return RGBX8888ToRGB565(r, g, b);
   }
 
 } // namespace ColorUtils
