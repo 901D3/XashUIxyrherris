@@ -201,7 +201,6 @@ GAME_EXPORT int _baseVideoInit(void) {
   updateUIDisplayDimensionAndShifts();
   elementsShiftsAndScaleUpdate();
 
-  mcr_ConsoleDebugLog("window dimension: %ix%i", globalUIContext.windowWidth, globalUIContext.windowHeight);
   mcr_ConsoleDebugLog("display dimension: %ix%i", globalUIContext.displayWidth, globalUIContext.displayHeight);
   mcr_ConsoleDebugLog("shifts: x: %i, y: %i", globalUIContext.shiftX, globalUIContext.shiftY);
 
