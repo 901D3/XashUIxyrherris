@@ -10,7 +10,7 @@
 #define mcr_bound(min, value, max) ((value) < (min) ? (min) : ((value) > (max) ? (max) : (value)))
 
 #define mcr_min(a, b) ((a) < (b) ? (a) : (b))
-#define mcr_max(a, b) ((a) > (b) ? (b) : (a))
+#define mcr_max(a, b) ((a) > (b) ? (a) : (b))
 
 #define mcr_clampInt8(value) (mcr_bound(-INT8MIN, (value), INT8MAX))
 #define mcr_clampUint8(value) (mcr_bound(0, value, UINT8MAX))
