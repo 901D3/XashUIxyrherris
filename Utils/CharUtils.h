@@ -2,6 +2,7 @@
 #pragma once
 
 #include <string>
+#include <ctype.h>
 
 namespace CharUtils {
 
@@ -40,6 +41,20 @@ namespace CharUtils {
     // ё
     else if (codepoint == 0x0451)
       codepoint = 0xB8;
+  }
+
+  inline int caseInsensitiveCompare(const char *string1, const char *string2) {
+    while (*string1 && *string2) {
+      char c1 = tolower(static_cast<unsigned char>(*string1));
+      char c2 = tolower(static_cast<unsigned char>(*string2));
+      if (c1 != c2)
+        return static_cast<unsigned char>(c1) - static_cast<unsigned char>(c2);
+
+      string1++;
+      string2++;
+    }
+
+    return 0;
   }
 
 } // namespace CharUtils
