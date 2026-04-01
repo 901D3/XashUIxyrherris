@@ -1,8 +1,11 @@
 
 #pragma once
 
-#define mcr_bitUint(n) (1U << (n))
+#define mcr_bitUint(n)      (1U << (n))
 #define mcr_bitUlonglong(n) (1ULL << (n))
+
+#define mcr_bitmaskUint(n)      ((1U << (n)) - 1)
+#define mcr_bitmaskUlonglong(n) ((1ULL << (n)) - 1)
 
 namespace BitwiseUtils {
 
